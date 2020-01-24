@@ -4,14 +4,16 @@ using Colonize.Website.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Colonize.Website.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200124114548_SeedDatabaseWithShips")]
+    partial class SeedDatabaseWithShips
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -38,22 +40,6 @@ namespace Colonize.Website.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Destination");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Lorem ipsum dolor",
-                            ImageUrl = "https://via.placeholder.com/1280x280.png?text=Moon",
-                            Name = "Moon"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Lorem ipsum dolor",
-                            ImageUrl = "https://via.placeholder.com/1280x280.png?text=Mars",
-                            Name = "Mars"
-                        });
                 });
 
             modelBuilder.Entity("Colonize.Website.Data.Entities.Ship", b =>
@@ -84,17 +70,9 @@ namespace Colonize.Website.Data.Migrations
                         {
                             Id = 1,
                             Description = "Lorem ipsum dolor",
-                            ImageUrl = "https://via.placeholder.com/1280x280.png?text=Moonshot",
+                            ImageUrl = "https://via.placeholder.com/1280x280.png?text=Hero+1",
                             Name = "Moonshot",
                             PassengerCapacity = 200
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Lorem ipsum dolor",
-                            ImageUrl = "https://via.placeholder.com/1280x280.png?text=Mars+Explorer",
-                            Name = "Mars Explorer",
-                            PassengerCapacity = 2800
                         });
                 });
 
@@ -111,10 +89,10 @@ namespace Colonize.Website.Data.Migrations
                     b.Property<DateTime>("DepartureAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DestinationId")
+                    b.Property<int?>("DestinationId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ShipId")
+                    b.Property<int?>("ShipId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -124,24 +102,6 @@ namespace Colonize.Website.Data.Migrations
                     b.HasIndex("ShipId");
 
                     b.ToTable("Voyage");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ArrivalAt = new DateTime(2024, 6, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartureAt = new DateTime(2024, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DestinationId = 1,
-                            ShipId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ArrivalAt = new DateTime(2029, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DepartureAt = new DateTime(2028, 12, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DestinationId = 2,
-                            ShipId = 2
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -348,15 +308,11 @@ namespace Colonize.Website.Data.Migrations
                 {
                     b.HasOne("Colonize.Website.Data.Entities.Destination", "Destination")
                         .WithMany()
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DestinationId");
 
                     b.HasOne("Colonize.Website.Data.Entities.Ship", "Ship")
                         .WithMany()
-                        .HasForeignKey("ShipId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ShipId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
