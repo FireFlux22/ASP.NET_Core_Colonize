@@ -1,0 +1,13 @@
+﻿@page "{id}"
+@model Colonize.Website.VoyageModel
+@{
+    ViewData["Title"] = "Voyage";
+}
+
+<h1>@Model.Voyage.Destination.Name</h1>
+
+<p>@Model.Voyage.Destination.Description</p>
+
+<img src="@Model.Voyage.Destination.ImageUrl"
+     alt="@Model.Voyage.Destination.Name"/>
+

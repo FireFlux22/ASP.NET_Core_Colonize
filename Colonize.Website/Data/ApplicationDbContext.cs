@@ -23,9 +23,9 @@ namespace Colonize.Website.Data
             var ships = new List<Ship>
             {
                 new Ship(1, "Moonshot", "Lorem ipsum dolor", 200,
-                    new Uri("https://via.placeholder.com/1280x280.png?text=Moonshot", UriKind.Absolute)),
+                    new Uri("https://via.placeholder.com/480x360.png?text=Moonshot", UriKind.Absolute)),
                 new Ship(2, "Mars Explorer", "Lorem ipsum dolor", 2800,
-                    new Uri("https://via.placeholder.com/1280x280.png?text=Mars+Explorer", UriKind.Absolute)),
+                    new Uri("https://via.placeholder.com/480x360.png?text=Mars+Explorer", UriKind.Absolute)),
             };
 
             ships.ForEach(x => modelBuilder.Entity<Ship>().HasData(x));

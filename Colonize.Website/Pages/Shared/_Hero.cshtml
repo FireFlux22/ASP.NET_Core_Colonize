@@ -1,0 +1,63 @@
+﻿
+@using Colonize.Website.Data.Entities;
+@model List<Voyage>
+
+@{
+    //bool hasActiveStory = false;
+
+    //string ActiveHeroSlide()
+    //{
+    //    if (hasActiveStory) return "";
+
+    //    hasActiveStory = true;
+
+    //    return "active";
+    //}
+    // @ActiveHeroSlide() ligger i "carousel-item"
+
+    // ******************
+
+    //    string isActive = "active";
+    //    sätt isActive till "" efter första loopen.
+
+    // ******************
+
+    // var voyageList = ViewData["VoyageList"] as List<Voyage>;
+
+    bool IsFirstSlide(Voyage voyage)
+    => voyage == Model.First();
+
+}
+
+
+<div id="hero" class="hero carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        @foreach (var voyage in Model)
+        {
+            <div class="carousel-item @(IsFirstSlide(voyage) ? "active" : "")">
+                <div class="row">
+                    <div class="col">
+                        <h2>@voyage.Destination.Name</h2>
+                        <p>@voyage.Destination.Description</p>
+                        <a href=$"/voyages/{@voyage.Id}" class="btn btn-outline-dark">
+                            SIGN UP
+                        </a>
+                    </div>
+                    <div class="col">
+                        <img src="@voyage.Destination.ImageUrl"
+                             class="d-block w-100"
+                             alt="@voyage.Destination.Name">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <a class="carousel-control-prev" href="#hero" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#hero" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
