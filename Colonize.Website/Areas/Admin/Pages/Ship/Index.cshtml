@@ -1,0 +1,34 @@
+﻿@page
+@model Colonize.Website.Pages.Admin.Ship.IndexModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div class="row">
+        <div class="col">
+            <a href="/admin/new" class="btn btn-primary float-right">Add</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Passenger capacity</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var ship in Model.Ships)
+                    {
+                        <tr>
+                            <td>@ship.Name</td>
+                            <td>@ship.PassengerCapacity</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>

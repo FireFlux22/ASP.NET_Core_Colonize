@@ -1,0 +1,53 @@
+﻿@page
+@model Colonize.Website.Pages.Admin.Ship.NewModel
+@{
+    ViewData["Title"] = "New ship";
+}
+
+<h2>Add new ship</h2>
+
+@*action="" är för att tala om vart vi ska skicka infon i post*@
+<form method="post">
+    <div class="form-row">
+        <div class="form-group col-7">
+            <label>Name</label>
+            <input asp-for="viewModel.Name" class="form-control" />
+            <span asp-validation-for="viewModel.Name"></span>
+            @* Istället för:
+                <input type="text" name="name" class="form-control" placeholder="Enter name">*@
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-7">
+            <label>Description</label>
+            <textarea asp-for="viewModel.Description" class="form-control"> </textarea>
+            <span asp-validation-for="viewModel.Description"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-4">
+            <label>Image URL</label>
+            <input asp-for="viewModel.ImageUrl" class="form-control">
+            <span asp-validation-for="viewModel.ImageUrl"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-3">
+            <label>Passenger capacity</label>
+            <input asp-for="viewModel.PassengerCapacity" class="form-control">
+            <span asp-validation-for="viewModel.PassengerCapacity"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+</form>
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
+

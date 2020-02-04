@@ -10,8 +10,10 @@ namespace Colonize.Website
     public class VoyageModel : PageModel
     {
         // ta bort int id inparametern i OnGet() när denna används
-        [BindProperty(SupportsGet = true)]
-        public int Id { get; set; }
+        // använd när du vill använda Id mer än en gång
+        // använd helst inte den här! 
+        //[BindProperty(SupportsGet = true)]
+        //public int Id { get; set; }
 
         public Voyage Voyage { get; set; }
 
@@ -22,11 +24,11 @@ namespace Colonize.Website
             this.context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(int id) // binding
         {
             Voyage = context.Voyage
                 .Include(x => x.Destination)
-                .FirstOrDefault(x => x.Id == Id);
+                .FirstOrDefault(x => x.Id == id);
 
             if(Voyage == null)
             {
