@@ -11,6 +11,7 @@ namespace Colonize.Website.Data
         // kommer få tillgång till både Destination och Ship eftesom de finns i Voyage
         public DbSet<Voyage> Voyage { get; set; }
         public DbSet<Ship> Ship { get; set; }
+        public DbSet<Destination> Destination { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

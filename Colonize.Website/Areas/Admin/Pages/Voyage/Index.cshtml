@@ -1,0 +1,41 @@
+﻿@page
+@model Colonize.Website.Areas.Admin.Pages.Voyage.IndexModel
+@{
+    ViewData["Title"] = "Voyages";
+}
+
+
+<h1>Voyages</h1>
+
+<div class="row">
+    <div class="col">
+        <a href="/admin/new" class="btn btn-primary float-right">Add</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Destination</th>
+                    <th>Departure</th>
+                    <th>Arrival</th>
+                    <th>Ship</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var voyage in Model.Voyages)
+                {
+                    <tr>
+                        <td>@voyage.Destination.Name</td>
+                        <td>@voyage.DepartureAt</td>
+                        <td>@voyage.ArrivalAt</td>
+                        <td>@voyage.Ship.Name</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>

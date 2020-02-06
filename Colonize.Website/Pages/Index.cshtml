@@ -4,7 +4,17 @@
     // meddelanden mellan sidor, kan skicka in data mellan dem
     // inte starkt typad, kommer inte få intellisense eller kompilationshjälp. 
     // Kan släppa igenom fel. 
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Home";
 }
 
-<partial name="_Hero" model="Model.VoyageList"/>
+@*Partial View*@
+@*<partial name="_Hero" model="Model.VoyageList"/>*@
+
+@*Tag Helper*@
+@*<hero first-name="John" message="hello"></hero>*@
+
+@*View Component*@
+@*@await Component.InvokeAsync("Hero", new { Voyages = Model.VoyageList})
+    Är samma som:*@
+@*<vc:hero voyages="Model.VoyageList"></vc:hero>*@
+<vc:hero></vc:hero>

@@ -1,0 +1,56 @@
+﻿@page
+@model Colonize.Website.Areas.Admin.Pages.Voyage.NewModel
+@{
+    ViewData["Title"] = "Add voyage";
+}
+
+
+<h1>Add new voyage</h1>
+
+<form method="post">
+    <div class="form-row">
+        <div class="form-group col-7">
+            <label>Destination</label>
+            <select asp-for="ViewModel.DestinationId"
+                    asp-items="Model.ViewModel.DestinationList"
+                    class="form-control">
+            </select>
+            <span asp-validation-for="ViewModel.DestinationId"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-7">
+            <label>Ship</label>
+            <select asp-for="ViewModel.ShipId"
+                    asp-items="Model.ViewModel.ShipList"
+                    class="form-control">
+            </select>
+            <span asp-validation-for="ViewModel.ShipId"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-3">
+            <label>Departure time</label>
+            <input asp-for="ViewModel.DepartureAt" class="form-control">
+            <span asp-validation-for="ViewModel.DepartureAt"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-3">
+            <label>Arrival time</label>
+            <input asp-for="ViewModel.ArrivalAt" class="form-control">
+            <span asp-validation-for="ViewModel.ArrivalAt"></span>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <button type="submit" class="btn btn-primary">Add</button>
+    </div>
+</form>
+
+@section Scripts{
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+}
