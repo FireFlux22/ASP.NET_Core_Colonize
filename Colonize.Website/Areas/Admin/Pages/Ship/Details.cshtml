@@ -1,0 +1,42 @@
+﻿@page
+@model Colonize.Website.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div>
+    <h4>Ship details</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ship.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ship.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ship.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ship.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ship.PassengerCapacity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ship.PassengerCapacity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ship.ImageUrl)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="@Model.Ship.ImageUrl" alt="@Model.Ship.Name" />
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Ship.Id">Edit</a> |
+    <a asp-page="./Delete" asp-route-id="@Model.Ship.Id">Delete</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

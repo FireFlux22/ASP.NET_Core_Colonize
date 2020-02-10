@@ -4,14 +4,16 @@ using Colonize.Website.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Colonize.Website.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200210130424_AddProductSeedData")]
+    partial class AddProductSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -196,19 +198,6 @@ namespace Colonize.Website.Data.Migrations
                         });
                 });
 
-            modelBuilder.Entity("Colonize.Website.Data.Entities.VoyageIdentityUser", b =>
-                {
-                    b.Property<int>("VoyageId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("IdentityUserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("VoyageId", "IdentityUserId");
-
-                    b.ToTable("VoyageIdentityUser");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -329,12 +318,12 @@ namespace Colonize.Website.Data.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "718b8cf3-14ba-4493-8f1a-9c06d00ce07a",
+                            ConcurrencyStamp = "26b513c4-a419-41cb-ac7a-dad48de259eb",
                             Email = "john.doe@nomail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "john.doe@nomail.com",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPQIAvOrc8s9h7c12pjX1z0Ar/CSBoXEN1O66kOEHfnv3KdzG2zD0wscy2Mb21XGSw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEK1LGhHFw/Xuds0mpOTQpUZiDGgtXcIekBBrXMf1UXrY/5V3lnGMDy103sS8yYQfng==",
                             PhoneNumber = "0707-12345",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",

@@ -1,0 +1,17 @@
+﻿@page
+@model Colonize.Website.DeleteModel
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Are you sure you want to delete dis ship, mon?</h1>
+
+@Model.Ship.Name
+
+<form method="post">
+    <input type="hidden" asp-for="Ship.Id"/> @*asp-for är till för att skicka info till servern*@
+    <input type="submit" value="Delete" class="btn btn-danger"/>
+    <a asp-page="./Index">Avbryt</a>
+</form>
+

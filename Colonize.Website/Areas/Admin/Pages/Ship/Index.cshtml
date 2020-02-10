@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col">
-            <a href="/admin/new" class="btn btn-primary float-right">Add</a>
+            <a asp-area="Admin" asp-page="/Ship/New" class="btn btn-primary float-right">Add</a>
         </div>
     </div>
     <div class="row">
@@ -16,6 +16,7 @@
                     <tr>
                         <th>Name</th>
                         <th>Passenger capacity</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -25,6 +26,14 @@
                         <tr>
                             <td>@ship.Name</td>
                             <td>@ship.PassengerCapacity</td>
+                            <td>
+                                <a asp-area="Admin" asp-page="/Ship/Edit" asp-route-id="@ship.Id" class="btn btn-info">
+                                    Edit
+                                </a>
+                                <a asp-area="Admin" asp-page="/Ship/Delete" asp-route-id="@ship.Id" class="btn btn-danger">
+                                    Delete
+                                </a>
+                            </td>   
                         </tr>
                     }
 

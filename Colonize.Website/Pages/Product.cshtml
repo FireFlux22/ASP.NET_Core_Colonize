@@ -1,0 +1,10 @@
+﻿@page "{urlSlug}"
+@model Colonize.Website.ProductModel
+@{
+    ViewData["Title"] = "Product";
+}
+
+<h1>@Model.Product.Name</h1>
+
+
+<img src="@Model.Product.ImageUrl" />

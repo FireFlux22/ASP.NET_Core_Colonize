@@ -4,6 +4,11 @@ namespace Colonize.Website.Data.Entities
 {
     public class Ship
     {
+        public Ship()
+        {
+
+        }
+
         public Ship(string name, string description, ushort passengerCapacity, Uri imageUrl)
         {
             Name = name;
@@ -18,10 +23,10 @@ namespace Colonize.Website.Data.Entities
             Id = id;
         }
 
-        public int Id { get; protected set; }
-        public string Name { get; protected set; }
-        public string Description { get; protected set; }
-        public ushort PassengerCapacity { get; protected set; }
-        public Uri ImageUrl { get; protected set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public ushort PassengerCapacity { get; set; }
+        public Uri ImageUrl { get; set; }
     }
 }
