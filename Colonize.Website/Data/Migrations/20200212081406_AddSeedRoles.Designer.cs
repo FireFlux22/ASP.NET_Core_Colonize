@@ -4,14 +4,16 @@ using Colonize.Website.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Colonize.Website.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200212081406_AddSeedRoles")]
+    partial class AddSeedRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,8 +240,8 @@ namespace Colonize.Website.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c8c55068-7d8f-4b4b-8722-25d2ad0e89b3",
-                            ConcurrencyStamp = "171e0f82-5394-4db8-91c1-3ba44964f656",
+                            Id = "648a4deb-de5d-4b07-a1c9-058f57a2d4f1",
+                            ConcurrencyStamp = "4f7827a3-c057-472f-b0a3-9cdc5e349d67",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -338,16 +340,15 @@ namespace Colonize.Website.Data.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7b0048dc-6bd6-47a6-a081-6696814a5579",
+                            ConcurrencyStamp = "59d61a9a-7263-44a8-8d6e-5537d4bdd0ef",
                             Email = "john.doe@nomail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
-                            NormalizedEmail = "JOHN.DOE@NOMAIL.COM",
-                            NormalizedUserName = "JOHN.DOE@NOMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPOLoZS+gXbgq9RE2RE12dI+yyWXlty8cZo9LpGQ4OVoY5elgHQwQ37ON1NtowXQnA==",
+                            NormalizedEmail = "john.doe@nomail.com",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDg/r3O8FA5Xf3p4XpdxPZooMH5MpDKdVnDIXUPCrc05Fm4QtWzCTq3va4EsKAy3PA==",
                             PhoneNumber = "0707-12345",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ddc6f919-b75d-4303-9c58-7ba0d0e48bcf",
+                            SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "john.doe@nomail.com"
                         });
@@ -414,13 +415,6 @@ namespace Colonize.Website.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
-
-                    b.HasData(
-                        new
-                        {
-                            UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
-                            RoleId = "c8c55068-7d8f-4b4b-8722-25d2ad0e89b3"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

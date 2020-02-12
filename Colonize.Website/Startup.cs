@@ -1,14 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.EntityFrameworkCore;
 using Colonize.Website.Data;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -31,14 +25,22 @@ namespace Colonize.Website
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddRoles<IdentityRole>() // LÄGG TILL! 
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            // Här gör vi att man endast kan komma åt admin som administrator! 
+            // Lägg till "IsAdministrator" i AuthorizeAreaFolder
+            services.AddAuthorization(options =>
+                   options.AddPolicy("IsAdministrator", policy =>
+                   policy.RequireRole("Administrator")));
+
+            // Här gör vi admin till restricted area! 
             services.AddRazorPages()
                 .AddRazorPagesOptions(options =>
                 {
-                    options.Conventions.AuthorizeAreaFolder("Admin", "/");
+                    options.Conventions.AuthorizeAreaFolder("Admin", "/", "IsAdministrator");
                 })
                 .AddRazorRuntimeCompilation();
-            // Här gör vi admin till restricted area! 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

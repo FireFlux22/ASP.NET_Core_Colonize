@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Colonize.Website.Data
 {
@@ -12,6 +13,8 @@ namespace Colonize.Website.Data
         public DbSet<Voyage> Voyage { get; set; }
         public DbSet<Ship> Ship { get; set; }
         public DbSet<Destination> Destination { get; set; }
+        public DbSet<Product> Product { get; set; }
+
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -27,11 +30,10 @@ namespace Colonize.Website.Data
 
             SeedDatabase(modelBuilder);
 
-            SeedProducts(modelBuilder);
 
         }
 
-        private void SeedProducts(ModelBuilder modelBuilder)
+        private static void SeedProducts(ModelBuilder modelBuilder)
         {
             var products = new List<Product>
             {
@@ -62,10 +64,31 @@ namespace Colonize.Website.Data
 
             SeedVoyages(modelBuilder, ships, destinations);
 
-            SeedUsers(modelBuilder);
+            List<IdentityRole> roles = SeedRoles(modelBuilder);
+            SeedUsers(modelBuilder, roles);
+            
+            SeedProducts(modelBuilder);
+
         }
 
-        private static void SeedUsers(ModelBuilder modelBuilder)
+        private static List<IdentityRole> SeedRoles(ModelBuilder modelBuilder)
+        {
+            var roles = new List<IdentityRole>
+            {
+                new IdentityRole
+                {
+                    Id = Guid.NewGuid().ToString(),
+                    Name = "Administrator",
+                    NormalizedName = "ADMINISTRATOR"
+                }
+            };
+
+            roles.ForEach(role => modelBuilder.Entity<IdentityRole>().HasData(role));
+
+            return roles;
+        }
+
+        private static void SeedUsers(ModelBuilder modelBuilder, List<IdentityRole> roles)
         {
             var hasher = new PasswordHasher<IdentityUser>();
 
@@ -73,15 +96,27 @@ namespace Colonize.Website.Data
             {
                 Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                 UserName = "john.doe@nomail.com",
+                NormalizedUserName = "JOHN.DOE@NOMAIL.COM",
                 Email = "john.doe@nomail.com",
-                NormalizedEmail = "john.doe@nomail.com",
+                NormalizedEmail = "JOHN.DOE@NOMAIL.COM",
                 EmailConfirmed = true,
                 PhoneNumber = "0707-12345",
                 PasswordHash = hasher.HashPassword(null, "Secret#123"),
-                SecurityStamp = string.Empty
             };
 
             modelBuilder.Entity<IdentityUser>().HasData(johnDoe);
+
+            var administrator = roles.FirstOrDefault(x => x.Name == "Administrator");
+
+            if (administrator != null)
+            {
+                modelBuilder.Entity<IdentityUserRole<string>>()
+                    .HasData(new IdentityUserRole<string>
+                    {
+                        UserId = johnDoe.Id,
+                        RoleId = administrator.Id
+                    });
+            }
         }
 
         private static void SeedVoyages(ModelBuilder modelBuilder, List<Ship> ships, List<Destination> destinations)
@@ -131,6 +166,5 @@ namespace Colonize.Website.Data
             return ships;
         }
 
-        public DbSet<Colonize.Website.Data.Entities.Product> Product { get; set; }
     }
 }

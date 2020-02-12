@@ -4,14 +4,16 @@ using Colonize.Website.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Colonize.Website.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200212085700_AddUserInfo")]
+    partial class AddUserInfo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -238,8 +240,8 @@ namespace Colonize.Website.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "c8c55068-7d8f-4b4b-8722-25d2ad0e89b3",
-                            ConcurrencyStamp = "171e0f82-5394-4db8-91c1-3ba44964f656",
+                            Id = "7476269c-a0ac-4ee2-b880-8d58615b5347",
+                            ConcurrencyStamp = "0f54cd3a-de7c-4286-bcaa-35d8e6c7a7cc",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -338,16 +340,16 @@ namespace Colonize.Website.Data.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7b0048dc-6bd6-47a6-a081-6696814a5579",
+                            ConcurrencyStamp = "7191c884-530b-49fd-8bec-0112186d69a0",
                             Email = "john.doe@nomail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "JOHN.DOE@NOMAIL.COM",
                             NormalizedUserName = "JOHN.DOE@NOMAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPOLoZS+gXbgq9RE2RE12dI+yyWXlty8cZo9LpGQ4OVoY5elgHQwQ37ON1NtowXQnA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGNUpB4P2u9IonHHJ0a5EYjNMqqx5XhvImY1p9tvaF5jpuAloqi0/2vYFjwnHUE3Wg==",
                             PhoneNumber = "0707-12345",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ddc6f919-b75d-4303-9c58-7ba0d0e48bcf",
+                            SecurityStamp = "",
                             TwoFactorEnabled = false,
                             UserName = "john.doe@nomail.com"
                         });
@@ -419,7 +421,7 @@ namespace Colonize.Website.Data.Migrations
                         new
                         {
                             UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
-                            RoleId = "c8c55068-7d8f-4b4b-8722-25d2ad0e89b3"
+                            RoleId = "7476269c-a0ac-4ee2-b880-8d58615b5347"
                         });
                 });
 
