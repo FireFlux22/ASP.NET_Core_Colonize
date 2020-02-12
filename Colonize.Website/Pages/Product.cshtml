@@ -8,3 +8,8 @@
 
 
 <img src="@Model.Product.ImageUrl" />
+
+<form method="post">
+    <input type="hidden" asp-for="Product.Id" /> <!--Bind id and send it on-->
+    <button>Add to basket</button>
+</form>

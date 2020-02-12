@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace Colonize.Website
 {
@@ -25,7 +26,7 @@ namespace Colonize.Website
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddRoles<IdentityRole>() // LÄGG TILL! 
+                .AddRoles<IdentityRole>() // <== LÄGG TILL! 
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Här gör vi att man endast kan komma åt admin som administrator! 
@@ -41,7 +42,21 @@ namespace Colonize.Website
                     options.Conventions.AuthorizeAreaFolder("Admin", "/", "IsAdministrator");
                 })
                 .AddRazorRuntimeCompilation();
-        }
+
+            // Håll info i minnet för varukorg! 
+            services.AddDistributedMemoryCache();
+
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromSeconds(60); // timear ut efter 60 sek
+                // options.Cookie.HttpOnly = true;
+
+                // Make the session cookie essential
+                options.Cookie.IsEssential = true;
+            });
+
+
+    }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         // Middleware! 
@@ -61,6 +76,7 @@ namespace Colonize.Website
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession(); // Lägg till för att använda session! 
 
             app.UseRouting();
 

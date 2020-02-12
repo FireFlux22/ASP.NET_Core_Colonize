@@ -1,0 +1,17 @@
+﻿@page
+@using Microsoft.AspNetCore.Http
+
+@model Colonize.Website.BasketModel
+@{
+    ViewData["Title"] = "Basket";
+}
+
+<h1>Basket</h1>
+
+@foreach (var product in Model.Products)
+{
+    <div>
+        @product.Name
+    </div>
+}
+
